@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Casino Predictor - N_TR MAHIN QC HACK</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 🔐 Password & Master Password Login System -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-box">
+            <h2>N_TR MAHIN VIP</h2>
+            <p>Enter Password to Access</p>
+            <input type="text" id="nameInput" placeholder="Enter Your Name" autocomplete="off">
+            <input type="password" id="passInput" placeholder="Enter Password" autocomplete="off">
+            <button onclick="verifyPassword()">UNLOCK SYSTEM</button>
+            <div id="errorMsg" class="error-msg">Incorrect Name or Password!</div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="main-title">N_TR MAHIN QC HACK</h1>
+            <p class="sub-title" id="greetingSub">Custom Pattern Engine</p>
+            
+            <!-- Engine Status Bar (Normal / Reverse Mode) -->
+            <div class="engine-status-bar" id="engineStatusBadge">
+                ⚡ ENGINE: GATHERING DATA (0/10)
+            </div>
+        </div>
+
+        <!-- Next Prediction Box (Enhanced Premium Glow) -->
+        <div class="card-box prediction-card">
+            <div class="card-label">NEXT PREDICTED OUTCOME</div>
+            <div id="predOutput" class="pred-text">AWAITING 10 INPUTS...</div>
+            <div id="patternNameLabel" class="pattern-text">Need 10 more inputs...</div>
+        </div>
+
+        <!-- Prediction Performance -->
+        <div class="card-box">
+            <div class="card-label">Prediction Performance (Win / Loss):</div>
+            <div class="perf-grid">
+                <div class="perf-item">
+                    <span class="perf-title">TOTAL WINS</span>
+                    <span id="winCount" class="perf-val win">0</span>
+                </div>
+                <div class="perf-item">
+                    <span class="perf-title">TOTAL LOSSES</span>
+                    <span id="lossCount" class="perf-val loss">0</span>
+                </div>
+                <div class="perf-item">
+                    <span class="perf-title">WIN RATE</span>
+                    <span id="winRate" class="perf-val rate">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Record Actual Outcome -->
+        <div class="card-box">
+            <div class="card-label">Record Actual Outcome:</div>
+            <div class="action-buttons">
+                <button class="btn-input btn-player" onclick="recordOutcome('P')">PLAYER</button>
+                <button class="btn-input btn-banker" onclick="recordOutcome('B')">BANKER</button>
+                <button class="btn-input btn-tie" onclick="recordOutcome('T')">TIE</button>
+            </div>
+            <button class="btn-sub btn-undo" onclick="undoLast()">Undo Last Entry</button>
+            <button class="btn-sub btn-reset" onclick="resetAll()">Reset All</button>
+        </div>
+
+        <!-- Count Overview -->
+        <div class="count-grid">
+            <div class="count-item">
+                <span class="count-title">Player (P)</span>
+                <span id="countP" class="count-val p-color">0 (0%)</span>
+            </div>
+            <div class="count-item">
+                <span class="count-title">Banker (B)</span>
+                <span id="countB" class="count-val b-color">0 (0%)</span>
+            </div>
+            <div class="count-item">
+                <span class="count-title">Tie (T)</span>
+                <span id="countT" class="count-val t-color">0 (0%)</span>
+            </div>
+        </div>
+
+        <!-- Trend Matrix (Big Road) with Live Radar Scanning Line -->
+        <div class="card-box">
+            <div class="road-header-row">
+                <div class="card-label">Trend Matrix (Big Road)</div>
+                <div class="scan-live-tag"><span class="radar-dot"></span> LIVE SCANNING</div>
+            </div>
+            <div class="big-road-wrapper">
+                <div class="scanner-line"></div>
+                <div class="big-road-container" id="bigRoadGrid"></div>
+            </div>
+        </div>
+
+        <!-- Recent History -->
+        <div class="card-box">
+            <div class="card-label">Recent History</div>
+            <div class="recent-history-list" id="recentHistoryList"></div>
+        </div>
+
+        <!-- AI Voice Assistant Switch -->
+        <div class="voice-row">
+            <label class="switch">
+                <input type="checkbox" id="voiceToggle" checked>
+                <span class="slider round"></span>
+            </label>
+            <span>AI Voice Assistant</span>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

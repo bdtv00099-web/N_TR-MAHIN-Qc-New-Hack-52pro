@@ -1,0 +1,384 @@
+:root {
+    --bg-dark: #07080b;
+    --card-bg: #11141e;
+    --inner-box: #0a0c14;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    
+    --player-cyan: #00f2fe;
+    --banker-pink: #ff007f;
+    --tie-green: #00ff88;
+    --gold: #ffd700;
+    --gold-glow: rgba(255, 215, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at center, #151826 0%, #07080b 100%);
+    color: var(--text-primary);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(7, 8, 11, 0.96);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.login-box {
+    background: linear-gradient(145deg, #161925, #0d0e17);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 30px var(--gold-glow);
+}
+
+.login-box h2 { color: var(--gold); margin-bottom: 6px; font-size: 20px; letter-spacing: 1px; text-shadow: 0 0 12px var(--gold-glow); }
+.login-box p { font-size: 11px; color: var(--text-secondary); margin-bottom: 18px; }
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #07080b;
+    border: 1px solid #25293a;
+    color: #fff;
+    border-radius: 8px;
+    outline: none;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.login-box input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #ffd700, #cca100);
+    border: none;
+    color: #000;
+    font-weight: 900;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+}
+
+.error-msg { color: var(--banker-pink); font-size: 11px; margin-top: 10px; display: none; }
+
+.app-container {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.main-title {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #fff, var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(255,215,0,0.2);
+}
+
+.sub-title {
+    font-size: 10px;
+    color: var(--text-secondary);
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+}
+
+/* 🔥 Normal / Reverse Status Bar Luxury Styling */
+.engine-status-bar {
+    margin-top: 10px;
+    background: linear-gradient(145deg, #181b29, #0d0f17);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    color: var(--gold);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s ease;
+}
+
+.card-box {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.card-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* 🔥 Enhanced Signal Area (Prediction Display) */
+.prediction-card {
+    text-align: center;
+    padding: 24px 14px;
+    background: linear-gradient(145deg, #181c2b, #0e101a);
+    border: 1.5px solid rgba(0, 242, 254, 0.4);
+    box-shadow: 0 0 35px rgba(0, 242, 254, 0.15), inset 0 0 20px rgba(0, 242, 254, 0.05);
+    border-radius: 14px;
+}
+
+.pred-text {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--player-cyan);
+    margin: 8px 0;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 20px rgba(0, 242, 254, 0.7);
+}
+
+.pattern-text {
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-shadow: 0 0 8px rgba(255,215,0,0.4);
+}
+
+.perf-grid { display: flex; gap: 8px; margin-top: 8px; }
+.perf-item {
+    flex: 1;
+    background: var(--inner-box);
+    padding: 10px 4px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.perf-title { display: block; font-size: 8px; color: var(--text-secondary); font-weight: 700; margin-bottom: 4px; }
+.perf-val { font-size: 14px; font-weight: 900; }
+.perf-val.win { color: #00ff88; text-shadow: 0 0 8px rgba(0,255,136,0.3); }
+.perf-val.loss { color: var(--banker-pink); text-shadow: 0 0 8px rgba(255,0,127,0.3); }
+.perf-val.rate { color: var(--gold); }
+
+.action-buttons { display: flex; gap: 10px; margin-bottom: 8px; }
+.btn-input {
+    flex: 1;
+    padding: 14px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 900;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: transform 0.1s;
+}
+
+.btn-input:active { transform: scale(0.96); }
+.btn-player { background: linear-gradient(135deg, #00b4d8, #0077b6); box-shadow: 0 4px 15px rgba(0, 180, 216, 0.35); }
+.btn-banker { background: linear-gradient(135deg, #ff2e63, #c70039); box-shadow: 0 4px 15px rgba(255, 46, 99, 0.35); }
+.btn-tie { background: linear-gradient(135deg, #00e676, #00b359); color: #000; box-shadow: 0 4px 15px rgba(0, 230, 118, 0.35); }
+
+.btn-sub {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+.btn-undo { background: #202433; color: var(--text-primary); border: 1px solid rgba(255,255,255,0.05); }
+.btn-reset { background: transparent; color: var(--banker-pink); border: 1px solid rgba(255,46,99,0.3); }
+
+.count-grid { display: flex; gap: 8px; }
+.count-item {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 10px 4px;
+    text-align: center;
+}
+
+.count-title { display: block; font-size: 9px; color: var(--text-secondary); margin-bottom: 3px; font-weight: 700; }
+.count-val { font-size: 11px; font-weight: 900; }
+.p-color { color: var(--player-cyan); }
+.b-color { color: var(--banker-pink); }
+.t-color { color: var(--tie-green); }
+
+/* 🔥 Trend Matrix Scanner Header & Live Tag */
+.road-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.scan-live-tag {
+    font-size: 9px;
+    font-weight: 900;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    letter-spacing: 0.5px;
+}
+
+.radar-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--gold);
+    animation: radarBlink 1.2s infinite ease-in-out;
+}
+
+@keyframes radarBlink {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* 🔥 Big Road Live Scanner Line Animation Wrapper */
+.big-road-wrapper {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.scanner-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, var(--gold), transparent);
+    box-shadow: 0 0 15px var(--gold), 0 0 25px var(--gold);
+    z-index: 10;
+    pointer-events: none;
+    animation: scanMove 2.5s infinite linear;
+}
+
+@keyframes scanMove {
+    0% { left: 0%; opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { left: 100%; opacity: 0.2; }
+}
+
+.big-road-container {
+    display: flex;
+    gap: 6px;
+    height: 140px;
+    background: var(--inner-box);
+    padding: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+.road-col { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; }
+.road-cell {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 900;
+    flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.road-cell.p { border-color: var(--player-cyan); color: var(--player-cyan); background: rgba(0, 180, 216, 0.2); }
+.road-cell.b { border-color: var(--banker-pink); color: var(--banker-pink); background: rgba(255, 46, 99, 0.2); }
+.road-cell.t { border-color: var(--tie-green); color: var(--tie-green); background: rgba(0, 230, 118, 0.2); }
+
+.recent-history-list {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 4px;
+    scroll-behavior: smooth;
+}
+
+.history-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+
+.history-circle.p { background: var(--player-cyan); color: #000; }
+.history-circle.b { background: var(--banker-pink); }
+.history-circle.t { background: var(--tie-green); color: #000; }
+
+.voice-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    font-weight: 700;
+}
+
+.switch { position: relative; display: inline-block; width: 36px; height: 18px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #222634; transition: .3s; border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.slider:before {
+    position: absolute; content: ""; height: 12px; width: 12px; left: 2px; bottom: 2px;
+    background-color: white; transition: .3s; border-radius: 50%;
+}
+input:checked + .slider { background-color: var(--gold); }
+input:checked + .slider:before { transform: translateX(18px); background-color: #000; }
